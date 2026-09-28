@@ -1,0 +1,74 @@
+@startuml diagrama-uml
+
+title Bridge - Sensores Industriais x Canais de Comunicacao
+
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+
+abstract class Sensor {
+  # canal: CanalComunicacao
+  + monitorar(valorMedido: double): String
+  + trocarCanal(novoCanal: CanalComunicacao): void
+  # {abstract} classificar(valorMedido: double): String
+  # {abstract} getTipo(): String
+}
+
+class SensorTemperatura extends Sensor {
+  # classificar(valorMedido: double): String
+  # getTipo(): String
+}
+
+class SensorPressao extends Sensor {
+  # classificar(valorMedido: double): String
+  # getTipo(): String
+}
+
+interface CanalComunicacao {
+  + enviar(mensagem: String): void
+}
+
+class CanalDisplayLocal implements CanalComunicacao {
+  - mensagensEnviadas: List<String>
+  + enviar(mensagem: String): void
+  + getMensagensEnviadas(): List<String>
+}
+
+class CanalRedeRemota implements CanalComunicacao {
+  - mensagensEnviadas: List<String>
+  + enviar(mensagem: String): void
+  + getMensagensEnviadas(): List<String>
+}
+
+class App {
+  + {static} main(args: String[]): void
+}
+
+Sensor <|-- SensorTemperatura
+Sensor <|-- SensorPressao
+
+CanalComunicacao <|.. CanalDisplayLocal
+CanalComunicacao <|.. CanalRedeRemota
+
+Sensor o-- CanalComunicacao : "ponte\n(composicao)"
+
+App ..> SensorTemperatura : usa
+App ..> SensorPressao : usa
+App ..> CanalDisplayLocal : usa
+App ..> CanalRedeRemota : usa
+
+note right of Sensor
+  **Abstraction**
+  Guarda a referencia ao
+  CanalComunicacao (a "ponte")
+  e pode trocá-la em tempo
+  de execução via trocarCanal().
+end note
+
+note right of CanalComunicacao
+  **Implementor**
+  Contrato comum a qualquer
+  forma de transmitir uma
+  leitura de sensor.
+end note
+
+@enduml
