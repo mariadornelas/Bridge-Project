@@ -4,13 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * Testa o desacoplamento que o Bridge proporciona entre a Abstração
- * ({@link Sensor} e suas subclasses) e a Implementação
- * ({@link CanalComunicacao} e suas implementações). É esse
- * desacoplamento — as duas hierarquias podendo variar de forma
- * totalmente independente — que caracteriza o padrão.
- */
 class SensorBridgeDesacoplamentoTest {
 
     @Test
@@ -20,8 +13,6 @@ class SensorBridgeDesacoplamentoTest {
         Sensor sensorTemperatura = new SensorTemperatura(canal);
         Sensor sensorPressao = new SensorPressao(canal);
 
-        // O mesmo canal, usado por dois tipos de sensor diferentes,
-        // sem que nenhuma das duas classes precise saber da outra.
         assertDoesNotThrow(() -> sensorTemperatura.monitorar(50.0));
         assertDoesNotThrow(() -> sensorPressao.monitorar(5.0));
         assertEquals(2, canal.getMensagensRecebidas().size());
