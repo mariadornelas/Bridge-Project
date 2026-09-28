@@ -1,12 +1,5 @@
 package com.faculdade.sensor;
 
-/**
- * Refined Abstraction: sensor de temperatura (em °C).
- *
- * <p>Herda de {@link Sensor} toda a lógica de transmissão via
- * {@link CanalComunicacao} e só precisa se preocupar com sua própria
- * regra de classificação.</p>
- */
 public class SensorTemperatura extends Sensor {
 
     private static final double LIMITE_ALERTA = 70.0;

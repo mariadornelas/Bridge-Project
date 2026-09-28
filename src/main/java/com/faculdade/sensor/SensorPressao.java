@@ -1,12 +1,5 @@
 package com.faculdade.sensor;
 
-/**
- * Refined Abstraction: sensor de pressão (em bar).
- *
- * <p>Herda de {@link Sensor} toda a lógica de transmissão via
- * {@link CanalComunicacao} e só precisa se preocupar com sua própria
- * regra de classificação.</p>
- */
 public class SensorPressao extends Sensor {
 
     private static final double LIMITE_ALERTA = 8.0;
