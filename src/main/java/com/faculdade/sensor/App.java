@@ -1,16 +1,5 @@
 package com.faculdade.sensor;
 
-/**
- * Classe cliente da demonstração.
- *
- * <p>Repare que qualquer combinação entre tipo de sensor e canal de
- * comunicação funciona sem precisar criar uma classe nova para cada
- * par — essa é a razão de ser do Bridge. Com 2 sensores e 2 canais,
- * já temos 4 combinações possíveis, todas a partir de apenas 4 classes
- * concretas (em vez das 4 classes "combinadas" que seriam necessárias
- * sem o padrão, e que cresceriam ainda mais rápido a cada novo sensor
- * ou canal adicionado).</p>
- */
 public class App {
 
     public static void main(String[] args) {
